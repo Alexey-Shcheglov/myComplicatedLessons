@@ -1,18 +1,52 @@
-const num = 266219;
-const str = num.toString();
+// задача 1
 
-const arr = str.split('');
+const lang = prompt('Ввести язык!', 'ru или en');
+let arr;
 
-let result = 1;
+// Только с использованием if
 
-for (let i=0; i < arr.length; i++) {
-	result = result * Number(arr[i]);
+
+
+if (lang == 'ru') {
+	console.log(arr = ['Понедельник', 'Втотник', 'Среда', 'Четверг', 'Рятница', 'Суббота', 'Воскресенье']);
+} 
+if (lang == 'en') {
+	console.log(arr = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'])
 }
 
-result = result ** 3;
+// с использованием switch-case
 
-result = result.toString().slice(0, 2);
+switch (lang) {
+	case 'ru':
+		arr = ['Понедельник', 'Втотник', 'Среда', 'Четверг', 'Рятница', 'Суббота', 'Воскресенье'];
+	break;
+	case 'en':
+		arr = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'];
+	break;
+}
+console.log(arr);
+
+// Многомерный массив без if и switch
+
+arr = {
+	'ru': ['Понедельник', 'Втотник', 'Среда', 'Четверг', 'Рятница', 'Суббота', 'Воскресенье'],
+	'en': ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday']
+
+};
+
+console.log(arr[lang]);
 
 
 
-console.log(result);
+
+
+
+
+
+
+// задача 2
+const namePerson = prompt('Введите имя', 'Только имя');
+
+
+let status = (namePerson == 'Артем')  ? console.log('Директор') : (namePerson == 'Александр') ? console.log('Преподаватель') : console.log('Студент');
+

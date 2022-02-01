@@ -11,7 +11,7 @@ if (lang == 'ru') {
 	console.log(arr = ['Понедельник', 'Втотник', 'Среда', 'Четверг', 'Рятница', 'Суббота', 'Воскресенье']);
 } 
 if (lang == 'en') {
-	console.log(arr = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'])
+	console.log(arr = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday']);
 }
 
 // с использованием switch-case

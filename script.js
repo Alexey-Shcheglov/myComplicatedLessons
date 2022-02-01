@@ -1,18 +1,12 @@
-const num = 266219;
-const str = num.toString();
 
-const arr = str.split('');
+function getString(word) {
+	if (typeof word !== 'string') {
+		console.log('Введена не строка');
+		return;
+	} 
 
-let result = 1;
+	word = word.trim();
 
-for (let i=0; i < arr.length; i++) {
-	result = result * Number(arr[i]);
+	return word.length > 30 ? word.slice(0, 30) + '...' : word;
 }
-
-result = result ** 3;
-
-result = result.toString().slice(0, 2);
-
-
-
-console.log(result);
+console.log(getString('                                   aaaaaaabcdefghijklmnopqrstuvwxyz'));

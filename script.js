@@ -1,12 +1,22 @@
+'use strict';
 
-function getString(word) {
-	if (typeof word !== 'string') {
-		console.log('Введена не строка');
-		return;
-	} 
 
-	word = word.trim();
+const arr = ['25', '327', '411', '85', '222', '43', '121'];
 
-	return word.length > 30 ? word.slice(0, 30) + '...' : word;
+for (let i = 0; i < 7; i++) {
+	if(arr[i].startsWith(2) || arr[i].startsWith(4)) {
+		console.log(arr[i]);
+	}
 }
-console.log(getString('                                   aaaaaaabcdefghijklmnopqrstuvwxyz'));
+
+
+
+nextPrime:
+for (let i = 2; i <= 100; i++) { 
+
+  for (let j = 2; j < i; j++) { 
+    if (i % j == 0) continue nextPrime; 
+  }
+
+  console.log(`Делители числа ${i} : 1 и ${i}`); 
+}

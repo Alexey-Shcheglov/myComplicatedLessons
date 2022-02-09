@@ -7,7 +7,7 @@ const day = new Date();
 
 week.forEach(function(i) {
 	if (i == 'Суббота' || i == 'Воскресенье') {
-		if (week[day.getDay()] == i ) {
+		if (week[day.getDay()] == i) {
 			myWeek.innerHTML += `<b>${i.italics()}</b></br>`;
 		} else {
 			myWeek.innerHTML += `${i.italics()}</br>`;
@@ -17,5 +17,5 @@ week.forEach(function(i) {
 	} else {
 		myWeek.innerHTML += i + '</br>';
 	}
-})
+});
 

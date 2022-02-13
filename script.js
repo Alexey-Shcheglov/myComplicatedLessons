@@ -19,36 +19,16 @@ const declinationMonths = function (str) {
 	}
 };
 
-const declinationHours = function (num) {
-	if (num == 1 || num == 21) {
-		return "час";
-	} else if (num >= 2 && num <= 4 || num >= 22 && num <= 24) {
-		return "часа";
-	} else {
-		return "часов";
-	}
-};
-
-const declinatinMinutes = function (num) {
-	if (num % 10 === 1) {
-		return 'минута';
-	} else if (num % 10 === 2 ||num % 10 === 3 ||num % 10 ===4 ) {
-		return 'минуты';
-	} else {
-		return 'минут';
-	}
-};
-
-const declinationSeconds = function (num) {
-	if (num % 10 === 1) {
-		return 'секунда';
-	} else if (num % 10 === 2 ||num % 10 === 3 ||num % 10 === 4) {
-		return 'секунды';
-	} else {
-		return 'секунд';
-	}
-};
-
+function decOfTime(number, type) {
+	const decCases = [2, 0, 1, 1, 1, 2];
+	const types = {
+		hours: ['час', 'часа', 'часов'],
+		minutes: ['минута', 'минуты', 'минут'],
+		seconds: ['секунда', 'секунды', 'секунд']
+	};
+  
+    return types[type][number % 100 > 4 && number % 100 < 20 ? 2 : decCases[Math.min(number % 10, 5)]];
+}
 
 const getDayWeek = function (date) {
 	return days[date.getDay()];
@@ -59,18 +39,15 @@ const getMonth = function (date) {
 };
 
 const app = function () {
-	setInterval(function() {
+	setInterval(function () {
 		const date = new Date();
-		showTime1.innerText = 'Сегодня ' + getDayWeek(date) + ', ' + date.getDate() + ' ' + declinationMonths(getMonth(date)) + ' ' + date.getFullYear() + ' года, '
-			+ addZerro(date.getHours()) + ' ' + declinationHours(date.getHours()) + ' ' + addZerro(date.getMinutes()) + ' ' + declinatinMinutes(date.getMinutes())
-			+ ' ' + addZerro(date.getSeconds()) + ' ' + declinationSeconds(date.getSeconds()); 
-		}, 1000);
+		showTime1.innerText = 'Сегодня ' + getDayWeek(date) + ', ' + date.getDate() + ' ' + declinationMonths(getMonth(date)) + ' ' + date.getFullYear() + ' года, ' +
+			addZerro(date.getHours()) + ' ' + decOfTime(date.getHours(), 'hours') + ' ' + addZerro(date.getMinutes()) + ' ' + decOfTime(date.getMinutes(), 'minutes') +
+			' ' + addZerro(date.getSeconds()) + ' ' + decOfTime(date.getSeconds(), 'seconds');
 		showTime2.innerText = date.toLocaleDateString('ru') + ' - ' + date.toLocaleTimeString('ru');
-		
+
+	}, 1000);
+
 };
 
-
 app();
-
-
-

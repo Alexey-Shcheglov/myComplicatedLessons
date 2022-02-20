@@ -1,32 +1,56 @@
 'use strict';
-//  основное задание
+let elem;
 
-const DomElement = function (selector, height, width, bg, fontSize) {
-	this.selector = selector;
-	this.height = height + 'px';
-	this.width = width + 'px';
-	this.bg = bg;
-	this.fontSize = fontSize + 'px';
-	this.createElement = () => {
-		let elem;
-		if (this.selector.trim()[0] === ".") {
-			 elem = document.createElement('div');
-			 elem.classList.add(`${selector.slice(1)}`);
-		} else if (this.selector.trim()[0] === "#") {
-			 elem = document.createElement('p');
-			 elem.setAttribute("id", `${selector.slice(1)}`);
-		}
+function DomElement (selector, height, width, bg, position, left, top) {
+    this.selector = selector;
+    this.height = height;
+    this.width = width;
+    this.bg = bg;
+    this.position = position;
+    this.left = left;
+    this.top = top;
+    this.createElement = function () {
+        if (element.selector.trim()[0] === ".") {
+            elem = document.createElement('div');
+            elem.classList.add(`${selector.slice(1)}`);
+        } else if (element.selector.trim()[0] === "#") {
+            elem = document.createElement('p');
+            elem.setAttribute("id", `${selector.slice(1)}`);
+        }
 
-		document.body.append(elem);
-		elem.innerText = 'Создан элемент, причину пояснять не буду';
-		elem.style.cssText=`height: ${height  + 'px'};
-			width: ${width  + 'px'};
-			background-color: ${bg};
-			font-size : ${fontSize  + 'px'}; `;
-  };
- };
+        document.body.append(elem);
+        elem.innerText = ""
+        elem.style.cssText=`height: ${height  + 'px'};
+                width: ${width  + 'px'};
+                background-color: ${bg};
+                position: ${position};
+                top: ${top + 'px'};
+                left: ${left + 'px'}; `;
+        return elem;
+    };
 
- let elem = new DomElement('.block', '200', '200', 'blue', '22');
- elem.createElement();
 
+    this.keyDown = function () {
+        switch (event.key) {
+            case "ArrowLeft":
+                elem.style.left = (+elem.style.left.slice(0, -2) + -10) + "px";
+                break;
+            case 'ArrowRight':
+                elem.style.left = (+elem.style.left.slice(0, -2) + (+10)) + "px";
+                break;
+            case "ArrowDown":
+                elem.style.top = (+elem.style.top.slice(0, -2) + (+10)) + "px";
 
+                break;
+            case "ArrowUp":
+                elem.style.top = (+elem.style.top.slice(0, -2) - +10) + "px";
+                break;
+        }
+    };
+
+}
+
+let element = new DomElement('.block', '100', '100', 'blue', 'absolute', '900', '400');
+
+document.addEventListener("DOMContentLoaded", element.createElement);
+document.addEventListener("keydown", element.keyDown);

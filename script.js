@@ -1,20 +1,13 @@
 'use strict';
 
-class First {
-  hello() {
-    console.log('Привет я метод родителя!');
-  }
-}
+const userInput = document.getElementById('user-input');
+const inputText = document.getElementById('input-text');
+let inputTimeout;
 
-class Second extends First {
-  hello() {
-    super.hello();
-    console.log('А я наследуемый метод!');
-  }
-}
+userInput.addEventListener('input', () => {
+  clearTimeout(inputTimeout);
 
-const first = new First();
-const second = new Second();
-
-first.hello();
-second.hello();
+  inputTimeout = setTimeout(() => {
+    inputText.textContent = userInput.value;
+  }, 300);
+});
